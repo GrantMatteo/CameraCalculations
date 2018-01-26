@@ -1,15 +1,18 @@
 package org.usfirst.frc.team1086.CameraCalculator;
 
+import static java.lang.Thread.interrupted;
+import static java.lang.Thread.sleep;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.opencv.core.Mat;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
-import static java.lang.Thread.interrupted;
-import static java.lang.Thread.sleep;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.opencv.core.Mat;
 
-public class Camera {
+public class Camera implements VisionSource{
     public double vFOV;
     public double hFOV;
     public double xPixels;
@@ -60,7 +63,7 @@ public class Camera {
      * @return the list of sightings
      */
     public ArrayList<Sighting> getSightings(VisionTarget vt){
-        return calculators.get(vt).getSightings();
+       return calculators.get(vt).getSightings();
     }
     
     /**
@@ -103,6 +106,7 @@ public class Camera {
         CvSink sink = new CvSink(name);
         sink.setSource(source);
         sink.setEnabled(true);
+        
         new Thread(() -> {
             try {
                 CameraServer.getInstance().startAutomaticCapture(source);
@@ -127,13 +131,5 @@ public class Camera {
                 calculators.get(target).updateObjects((ArrayList<Sighting>) sightings.clone());
             });
         }
-    }
-}
-class CameraConfig {
-    public static double getXAngle(double rawA, double dis, double cameraOffset){
-    	return Math.acos(cameraOffset / dis) - rawA;
-    }
-    public static double getYAngle(double rawA, double dHeight, double dis){
-        return Math.atan2(dHeight, dis) - rawA;
     }
 }

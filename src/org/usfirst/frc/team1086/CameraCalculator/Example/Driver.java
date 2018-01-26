@@ -11,5 +11,6 @@ public class Driver {
         c.initializeCamera(CameraServer.getInstance().addAxisCamera("10.10.86.22"), "Gear_Camera");
         c.addVisionTarget(gear);
         c.addPipeline(primary);
+        c.
     }
 }

@@ -6,6 +6,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.util.List;
 import java.util.OptionalDouble;
+
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.imgproc.Imgproc;
@@ -46,7 +47,26 @@ public class Sighting {
         centerX = x + width / 2;
         centerY = y + height / 2;
     }
-    
+    /**
+     * Manual Sighting creation without using OpenCV
+     * @param x the center x of the sighting
+     * @param y the center y of the sighting
+     * @param width width of the sighting
+     * @param height the height of the sighting
+     */
+    public Sighting(int signature, int x, int y, int width, int height){
+		//NOTE: ADD POINTS A
+    	this.centerX=x;
+		this.centerY=y;
+		this.x=(int) (centerX-width/2);
+		this.x=(int) (centerY+height/2);
+		this.width=width;
+		this.height=height;
+		area=width*height;
+        solidity = 1;
+		aspectRatio = width / height;
+		shape=new Area(new Rectangle(x, y, width, height));
+	}
     /**
      * Combines this sighting with another sighting
      * @param sighting the sighting to combine with this one
