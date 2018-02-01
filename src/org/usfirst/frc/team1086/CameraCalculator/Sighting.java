@@ -12,13 +12,13 @@ import org.opencv.core.Point;
 import org.opencv.imgproc.Imgproc;
 
 public class Sighting {
-    int x, y;
-    double centerX, centerY;
-    int height, width;
-    double area;
-    double solidity;
-    double aspectRatio;
-    double relativeAspectRatio;
+    public int x, y;
+    public double centerX, centerY;
+    public int height, width;
+    public double area;
+    public double solidity;
+    public double aspectRatio;
+    public double relativeAspectRatio;
     public int pieces = 1;
     public OptionalDouble angle, distance, rotation, rawV, rawH = rawV = rotation = distance = angle = OptionalDouble.empty();
     Area shape;

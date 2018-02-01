@@ -12,7 +12,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 
-public class Camera implements VisionSource{
+public class Camera{
     public double vFOV;
     public double hFOV;
     public double xPixels;
