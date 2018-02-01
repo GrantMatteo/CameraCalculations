@@ -34,7 +34,7 @@ public class SPIPixycam extends Camera {
 	}
 	/**
 	 * <b>DO NOT USE -- DOES NOT APPLY TO PIXYCAM</b>. Instead, use numberOfSightings(int id)
-	 * @param vt a completely inconsequential input
+	 * @param vt A completely inconsequential input
 	 * @return ALWAYS 0
 	 */
 	public int numberOfSightings(VisionTarget vt) {
