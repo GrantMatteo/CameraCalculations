@@ -10,8 +10,8 @@ public class CameraCalculator {
     VisionTarget visionTarget;
     
     /**
-     * Creates the camera calculator
-     * @param c the camera the calculator uses to get its image data
+     * Creates the CVCamera calculator
+     * @param c the CVCamera the calculator uses to get its image data
      * @param v the vision target it finds
      */
     public CameraCalculator(Camera c, VisionTarget v){
@@ -20,8 +20,8 @@ public class CameraCalculator {
     }
     
     /**
-     * Updates the data from the camera
-     * @param polys the data from the camera
+     * Updates the data from the CVCamera
+     * @param polys the data from the CVCamera
      */
     void updateObjects(ArrayList<Sighting> polys){
         visionObjects.clear();
@@ -67,7 +67,7 @@ public class CameraCalculator {
     }
     
     /**
-     * Calculates the horizontal rotation of the vision target relative to the camera
+     * Calculates the horizontal rotation of the vision target relative to the CVCamera
      */
     public void calculateRotation(){
         for(Sighting s : visionObjects){
@@ -78,7 +78,7 @@ public class CameraCalculator {
     }
     
     /**
-     * Finds the horizontal angle to a specific pixel on the camera
+     * Finds the horizontal angle to a specific pixel on the CVCamera
      * @param x the pixel
      * @return the angle
      */
@@ -96,7 +96,7 @@ public class CameraCalculator {
     }
     
     /**
-     * Finds the vertical angle to a specific pixel on the camera
+     * Finds the vertical angle to a specific pixel on the CVCamera
      * @param y the pixel
      * @return the angle
      */

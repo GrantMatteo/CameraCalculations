@@ -34,16 +34,16 @@ public abstract class VisionTarget {
     public abstract ArrayList<Sighting> validateSightings(ArrayList<Sighting> polys);
     
     /**
-     * This method should determine whether or not the estimation provided by the camera calculator is good.
+     * This method should determine whether or not the estimation provided by the CVCamera calculator is good.
      * @param s the sighting to validate
      * @return whether or not the estimation given is a good/usable estimation
      */
     public abstract boolean estimationIsGood(Sighting s);
     
     /**
-     * Creates a camera calculator to be used by a given camera for this vision target
-     * @param c the camera
-     * @return the camera calculator
+     * Creates a CVCamera calculator to be used by a given CVCamera for this vision target
+     * @param c the CVCamera
+     * @return the CVCamera calculator
      */
     public CameraCalculator getCalculator(Camera c){
         return new CameraCalculator(c, this);
