@@ -1,11 +1,12 @@
 package org.usfirst.frc.team1086.CameraCalculator;
 
-import edu.wpi.first.wpilibj.SPI;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
+import edu.wpi.first.wpilibj.SPI;
 
 public class PixyCamera extends Camera {
     public final byte sync = 0x5a;
@@ -14,9 +15,9 @@ public class PixyCamera extends Camera {
     private SPI pixyIn;
     private boolean foundPacket = false;
     public ArrayList<Sighting> sightings = new ArrayList<>();
-    public int mostRecentIn = 1086;
+    public int mostRecentIn = 1086;//This initial value shouldn't ever be used
     private SPI.Port SPIPort;
-
+    
     /**
      * Instantiates the CVCamera object
      * @param refreshRate the number of frames to process per second
@@ -30,8 +31,9 @@ public class PixyCamera extends Camera {
      * @param hAngle the horizontal angle of the CVCamera
      * @param vAngle the vertical angle of the CVCamera
      */
-    public PixyCamera(int refreshRate, double vFOV, double hFOV, double xPixels, double yPixels, double horizontalOffset, double verticalOffset, double depthOffset, double hAngle, double vAngle){
-        super(refreshRate, vFOV, hFOV, xPixels, yPixels, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
+    
+    public PixyCamera(int refreshRate, double vFOV, double hFOV, double horizontalOffset, double verticalOffset, double depthOffset, double hAngle, double vAngle){
+        super(refreshRate, vFOV, hFOV, 320, 200, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
         SPIPort = SPI.Port.kOnboardCS0;
         pixyIn = new SPI(SPIPort);
         pixyIn.setMSBFirst();
@@ -41,7 +43,21 @@ public class PixyCamera extends Camera {
         pixyIn.setClockActiveLow();
 
     }
-
+    /**
+     * Outputs the largest sighting it can find in the most recent frame
+     */
+    public Sighting getBestSighting() throws Exception{
+		if (sightings.size()<1) {
+			throw new Exception();
+		}
+    	int largest=0;
+    	for (int i=0; i<sightings.size(); i++) {
+			if (sightings.get(i).area>sightings.get(largest).area) {
+				largest=i;
+			}
+		}
+    	return sightings.get(largest);
+	}
     public void initializeCamera(String name) {
         new Thread(() -> {
             try {
@@ -75,6 +91,7 @@ public class PixyCamera extends Camera {
         } else {
             foundPacket = false;
         }
+        sightings=new ArrayList<Sighting>();
         for (int i = 0; i < 130; i++) {// 130 is the highest number of objects that can be sent
             int trialsum = 0;
             int checksum = getNextIn();
