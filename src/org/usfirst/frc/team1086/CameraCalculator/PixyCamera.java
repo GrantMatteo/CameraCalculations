@@ -33,7 +33,7 @@ public class PixyCamera extends Camera {
      */
     
     public PixyCamera(double vFOV, double hFOV, double horizontalOffset, double verticalOffset, double depthOffset, double hAngle, double vAngle){
-        super(50, vFOV, hFOV, 320, 200, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
+        super(100, vFOV, hFOV, 320, 200, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
         SPIPort = SPI.Port.kOnboardCS0;
         pixyIn = new SPI(SPIPort);
         pixyIn.setMSBFirst();
