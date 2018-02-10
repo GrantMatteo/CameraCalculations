@@ -32,8 +32,8 @@ public class PixyCamera extends Camera {
      * @param vAngle the vertical angle of the CVCamera
      */
     
-    public PixyCamera(int refreshRate, double vFOV, double hFOV, double horizontalOffset, double verticalOffset, double depthOffset, double hAngle, double vAngle){
-        super(refreshRate, vFOV, hFOV, 320, 200, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
+    public PixyCamera(double vFOV, double hFOV, double horizontalOffset, double verticalOffset, double depthOffset, double hAngle, double vAngle){
+        super(50, vFOV, hFOV, 320, 200, horizontalOffset, verticalOffset, depthOffset, hAngle, vAngle);
         SPIPort = SPI.Port.kOnboardCS0;
         pixyIn = new SPI(SPIPort);
         pixyIn.setMSBFirst();
