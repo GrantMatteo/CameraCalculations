@@ -14,7 +14,7 @@ import org.opencv.imgproc.Imgproc;
 
 public interface Pipeline {
     /**
-     * Convert a frame captured by the camera to an ArrayList of sighting objects
+     * Convert a frame captured by the CVCamera to an ArrayList of sighting objects
      * @param source the frame to process
      * @return the result
      */

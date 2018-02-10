@@ -93,7 +93,7 @@ public class SPIPixycam extends Camera {
 			// System.out.println("Most Recent: "+ Integer.toHexString(mostRecentIn)+"|"
 			// +Integer.toHexString(startWord));
 			if (mostRecentIn == startWord && lastIn == startWord) {
-
+				System.out.println("broken");
 				break;
 			}
 			// System.out.println("Searching for start of Packet");

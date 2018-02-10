@@ -59,7 +59,7 @@ public class Sighting {
     	this.centerX=x;
 		this.centerY=y;
 		this.x=(int) (centerX-width/2);
-		this.x=(int) (centerY+height/2);
+		this.y=(int) (centerY+height/2);
 		this.width=width;
 		this.height=height;
 		area=width*height;
